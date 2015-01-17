@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 </head>
     
 <body ng-controller="ContentController">
@@ -19,9 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
         function SpeakText(){
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "So I can get it to say things..";
-            speechSynthesis.speak(msg);
+
         }
         
         if (!('webkitSpeechRecognition' in window)) {
@@ -29,31 +28,37 @@
         } else {
           var recognizing;
           var recognition = new webkitSpeechRecognition();
-          var final_transcript = '';
 
           recognition.continuous = true;
           recognition.interimResults = false;
 
-          recognition.onstart = function() {console.log(1)}
-          recognition.onresult = function(event) {
-              
+          recognition.onstart = function() {console.log('Speech Recognition Commencing')}
+          recognition.onresult = function(event) {    
               for (var i = event.resultIndex; i < event.results.length; ++i) {
-                  if (event.results[i].isFinal && event.results[i][0].transcript == "Sue") {
-                    alert("The trigeger word 'Sue' has been detected")
+                  if (event.results[i].isFinal) {
+                    $.ajax({
+                      url: 'https://api.wit.ai/message',
+                      data: {
+                        'q': event.results[i].isFinal,
+                        'access_token' : 'SMRYKLMQBVUVUFDAPTPTXLY6H2ZM4DQU '
+                      },
+                      dataType: 'jsonp',
+                      method: 'GET',
+                      success: function(response) {
+                          console.log("success!", response);
+                      }
+                    });
                   }
-                  console.log(event.results[i][0].transcript);
-              }
-              
-              console.log(2);
-              document.getElementById("result").innerHTML = final_transcript;
-              console.log(final_transcript)
+              }              
           }
           recognition.onerror = function(event) {console.log(event.error)}
           recognition.onend = function() {console.log(4);                                         }
         }
 
         function StartSpeaking(event){
-            final_transcript = '';
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = "Speak!";
+            speechSynthesis.speak(msg);
             recognizing = true;
             recognition.lang = 'en-US';
             recognition.start();
