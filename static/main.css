@@ -15,5 +15,5 @@
     border-bottom-right-radius: 15%;
 }
 .panel-body{
-    height:150px;
+    min-height:200px;
 }

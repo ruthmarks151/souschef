@@ -10,16 +10,22 @@
       </span>
     </div>
         </form>
-    <div style="margin-top:20px;">
-        <div class="panel panel-default" ng-repeat="option in searchOptions.results" style="top-margin:10px;">
+    <div style="margin-top:20px;" class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="option in searchOptions.results">
+        <div class="panel panel-default" style="top-margin:10px;">
           <div class="panel-heading">
             <h3 class="panel-title">{{option.recipeName}}</h3>
           </div>
           <div class="panel-body">
-            <img ng-src="{{option.smallImageUrls[0]}}" class="img-responsive img-thumbnail" />
-            
+            <img ng-src="{{option.smallImageUrls[0]}}" class="img-responsive img-thumbnail" style="width:200px"/>
+            <i class="fa fa-star" ng-repeat="star in option.rating" style="margin-left:10px;"></i>
+            <h5>Ingredients</h5>  
+            <ul>
+              <li ng-repeat="ingredient in option.ingredients">{{ingredient}}</li>
+              </ul>
           </div>
         </div>
+            </div>
     </div>
 
 </div>
