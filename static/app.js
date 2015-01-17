@@ -2,8 +2,9 @@ var App = angular.module('SousChef', []);
 
 App.controller('ContentController', ['$scope','$http',function($scope, $http){
     $scope.submitSearch = function (){
-        $http.post('/recipe/get/all',{search:$scope.searchValue}).success(function(data){
+        $http.get('/recipe/get/all/'+$scope.searchValue).success(function(data){
             $scope.searchOptions = data;
+            console.log('wut');
         })
     }
     

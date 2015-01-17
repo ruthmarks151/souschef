@@ -19,7 +19,7 @@ def choose_recipe(recipe_id):
 
 @app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
-    return RecipeGetter.getAllUseableRecipes(search)
+    return json.dump(RecipeGetter.getAllUseableRecipes(search))
 
 @app.route('/')
 def root():
