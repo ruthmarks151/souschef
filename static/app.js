@@ -7,7 +7,7 @@ App.config(['$routeProvider',
         templateUrl: 'templates/search.html',
         controller: 'ContentController'
       }).
-      when('/recipe', {
+      when('/recipe/:id', {
         templateUrl: 'templates/recipe.html',
         controller: 'RecipeController'
       }).
@@ -26,6 +26,9 @@ App.controller('ContentController', ['$scope','$http',function($scope, $http){
 }])
 
 App.controller('RecipeController',['$scope',function($scope){
+    
+   $scope.recipe = Recipe.get
+    
    $scope.activateSpeechRecog = function(){
           var recognition = new webkitSpeechRecognition();
           recognition.continuous = true;
@@ -68,4 +71,13 @@ App.controller('RecipeController',['$scope',function($scope){
             recognition.lang = 'en-US';
             recognition.start();
     }
+   Recipe.query
 }])
+
+App.factory('Recipe', ['$resource',
+  function($resource){
+    return $resource('recipe/:id', {}, {
+      query: {method:'GET'}
+    });
+  }]);
+
