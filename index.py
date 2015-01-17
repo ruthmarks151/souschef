@@ -9,15 +9,15 @@ import json
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
-@app.route('/recipe/get/first/<search:search>')
+@app.route('/recipe/get/first/<search>')
 def create_recipe(search):
     return request_handler(RecipeGetter.getRecipe(search))
 
-@app.route('/recipe/choose/<recipe_id:recipe_id>')
+@app.route('/recipe/choose/<recipe_id>')
 def choose_recipe(recipe_id):
     return request_handler(RecipeGetter.getRecipeFromId(recipe_id))
 
-@app.route('/recipe/get/all/<search:search>')
+@app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
     return RecipeGetter.getAllUseableRecipes(search)
 
