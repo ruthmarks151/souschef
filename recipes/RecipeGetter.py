@@ -2,7 +2,7 @@ from yummly import Client
 from Recipe import *
 import StepScraper
 
-TIMEOUT = 0.2
+TIMEOUT = 5.0
 RETRIES = 0
 
 client = Client(api_id = '0ad05d37', api_key = 'b616f863887a7d2cb6d4baf30cd3cbe2', timeout = TIMEOUT, retries = RETRIES)
@@ -17,7 +17,7 @@ def getFirstUseableRecipeId(params):
 
 def getAllUseableRecipes(search_term):
     good_matches = []
-    for i in range(10):
+    for i in range(5):
         search_params = {
             'q': search_term,
             'start': i * 40,
