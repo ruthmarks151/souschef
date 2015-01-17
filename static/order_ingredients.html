@@ -1,0 +1,28 @@
+<html>
+  <body>
+
+    <form name="Ingredients" action="javascript:order()">
+      <script>
+        var api_key = "e602eb3b-e66b-41d0-930b-e8e9fb9b2c0e";
+
+        var ingredients = ["1 Cup", "34", "adrg"];
+        for(i = 0; i < ingredients.length; i++){
+          document.write("<input type=\"checkbox\" value=\"" + ingredients[i] + "\" name=\"ingredient\">" + ingredients[i] + "<br>");
+        }
+      </script>
+    </form>
+
+    <button type="button" onclick="order()">Order</button>
+    <script>
+      function order(){
+        var order = '';
+        for(i = 0; i < ingredients.length; i++){
+          if(document.Ingredients.ingredient[i].checked == true){
+            order += document.Ingredients.ingredient[i].value + "\n";
+          }
+        }
+      }
+    </script>
+
+  </body>
+</html>
