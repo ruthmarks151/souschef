@@ -26,6 +26,7 @@ def getAllUseableRecipes(search_term):
     matches = results.matches
     good_matches = []
     for match in matches:
+        print match.sourceDisplayName
         if match.sourceDisplayName in allowed_recipe_sources:
             good_matches.append(match)
     return good_matches
