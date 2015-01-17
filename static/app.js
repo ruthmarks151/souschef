@@ -20,7 +20,6 @@ App.controller('ContentController', ['$scope','$http',function($scope, $http){
     $scope.submitSearch = function (){
         $http.get('/recipe/get/all/'+$scope.searchValue).success(function(data){
             $scope.searchOptions = data;
-            console.log('wut');
         })
     }
     

@@ -19,7 +19,7 @@ def getAllUseableRecipes(search_term):
     search_params = {
         'q': search_term,
         'start': 0,
-        'maxResults': 100,
+        'maxResults': 10000,
         'requirePicutres': True
     }
     results = client.search(**search_params)
