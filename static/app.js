@@ -49,7 +49,8 @@ App.controller('RecipeController',['$scope',function($scope){
                               url: '/functions',
                               data: {
                                 'intent':response.outcomes[0].intent,
-                                'entities':response.outcomes[0].entities
+                                'entities':response.outcomes[0].entities,
+                                '_text':response.outcomes[0]._text
                               },
                               dataType: 'jsonp',
                               method: 'GET',
