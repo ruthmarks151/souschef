@@ -30,6 +30,7 @@ class Recipe:
         return self.recipe_id
 
     def get_current_step(self):
+        print 'trying to get step',self.current_step
         return self.steps[self.current_step]
 
     def get_picture_url(self):

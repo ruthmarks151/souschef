@@ -7,12 +7,14 @@ import json
 class request_handler:
 
     def __init__(self,recipe):
+        print (type(recipe))
         self.recipe = recipe
 
     def get_recipe(self):
         return self.recipe
 
     def handle_request(self,request):
+        print "handling a request of",request.args.get('intent')
         functions = {
             'query_temp': self.query_temp,
             'query_time': self.query_time,
@@ -22,8 +24,7 @@ class request_handler:
             'previous_step': self.previous_step,
             'ingredients': self.ingredient
         }
-
-        return functions[request["intent"]](request)
+        return functions[request.args.get('intent')](request)
 
     def relevant_time(self,request):
         pass
@@ -37,11 +38,6 @@ class request_handler:
         return self.recipe.get_current_step().get_step_text()
     def next_step(self,request):
         return self.recipe.get_next_step().get_step_text()
-    def previous_step(self,request):
-        return self.recipe.get_previous_step().get_step_text
-    def ingredients(self, request):
-        return find_best_ingredient_amount(request)
-
 
     def find_best_ingredient_amount(phrase):
         words_in_phrase = phrase.split()
@@ -59,8 +55,15 @@ class request_handler:
                 best_match = ingred
         return "You need " + ingred.get_amount_string() + " " + ingred.get_unts() + " of " + ingred.getName()
 
-    def parse_unit_conversion(self, phrase):
-        words = phrase.split()
+    def previous_step(self,request):
+        return self.recipe.get_previous_step().get_step_text()
+
+    def ingredients(self, request):
+        return find_best_ingredient_amount(request)
+
+    def parse_unit_conversion(self, request):
+        raw_statement = request.args.get('_text')
+        words = raw_statement.split()
         numbers = []
         units = []
         for i in range(len(words)):

@@ -22,7 +22,7 @@ App.controller('ContentController', ['$scope','$http',function($scope, $http){
             $scope.searchOptions = data;
         })
     }
-    
+
 }])
 
 App.controller('RecipeController',['$scope',function($scope){
@@ -44,7 +44,7 @@ App.controller('RecipeController',['$scope',function($scope){
                       method: 'GET',
                       success: function(response) {
                           console.log("success!", response);
-                          if(response.outcomes[0].confidence>0.6){
+                          if(response.outcomes[0].confidence>0.3){
                              $.ajax({
                               url: '/functions',
                               data: {
@@ -55,7 +55,7 @@ App.controller('RecipeController',['$scope',function($scope){
                               method: 'GET',
                               success: function(response) {
                                   console.log("Sent intent back to server and nothing failed!");
-                                  
+
                               }
                             });
                           }
@@ -63,7 +63,7 @@ App.controller('RecipeController',['$scope',function($scope){
                     });
                   }
               }
-          }                                     
+          }
             recognition.lang = 'en-US';
             recognition.start();
     }

@@ -18,17 +18,22 @@ def create_recipe(search):
 def choose_recipe(recipe_id):
     global rh
     recipe_id = recipe_id.encode('ascii','ignore')
-    print 'called with',recipe_id
-    r = RecipeGetter.getRecipeFromId(recipe_id)
-    print 'got recipe'
+    r = RecipeGetter.getRecipeClassFromId(recipe_id)
     rh = request_handler(r)
-    print 'set rh'
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
     print 'looking for',search
     return jsonify(results=RecipeGetter.getAllUseableRecipes(search))
+
+@app.route('/functions')
+def return_speech():
+    print "request gotten!"
+    global rh
+    response = rh.handle_request(request)
+    print response
+    return jsonify(results=response)
 
 @app.route('/')
 def root():
