@@ -1,7 +1,8 @@
 import sys
 sys.path.insert(0, './recipes/')
 import Recipe
-import convert
+import Convert
+import json
 
 class request_handler:
 
@@ -37,4 +38,4 @@ class request_handler:
     def previous_step(self,request):
         return self.recipe.get_previous_step().get_step_text()
     def ingredients(self,request):
-        pass
+        return json.dumps(self.recipe.get_ingredients())
