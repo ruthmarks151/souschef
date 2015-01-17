@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 
-<html ng-app='SousChef'>
+<html>
 <head>
     <title>SousChef</title>
     <link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 </head>
     
-<body ng-controller="ContentController">
+<body>
     
     <button class="btn btn-default" onclick="StartSpeaking(event)">Start Listening</button>
         
@@ -26,7 +24,6 @@
         if (!('webkitSpeechRecognition' in window)) {
             console.log('chrome does not have the speech api')
         } else {
-          var recognizing;
           var recognition = new webkitSpeechRecognition();
 
           recognition.continuous = true;
@@ -46,6 +43,20 @@
                       method: 'GET',
                       success: function(response) {
                           console.log("success!", response);
+                          if(response.outcomes[0].confidence>0.6){
+                             $.ajax({
+                              url: '/functions',
+                              data: {
+                                'intent':response.outcomes[0].intent,
+                                'entities':response.outcomes[0].entities
+                              },
+                              dataType: 'jsonp',
+                              method: 'GET',
+                              success: function(response) {
+                                  console.log("Sent intent back to server and nothing failed!");
+                              }
+                            });
+                          }
                       }
                     });
                   }
@@ -59,7 +70,6 @@
             var msg = new SpeechSynthesisUtterance();
             msg.text = "Speak!";
             speechSynthesis.speak(msg);
-            recognizing = true;
             recognition.lang = 'en-US';
             recognition.start();
         }
