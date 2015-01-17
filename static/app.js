@@ -1,4 +1,4 @@
-var App = angular.module('SousChef', []);
+var App = angular.module('SousChef', ['ngRoute']);
 
 App.config(['$routeProvider',
   function($routeProvider) {
@@ -7,10 +7,10 @@ App.config(['$routeProvider',
         templateUrl: 'templates/search.html',
         controller: 'ContentController'
       }).
-      when('/', {
+      when('/recipe', {
         templateUrl: 'templates/recipe.html',
         controller: 'ContentController'
-      })
+      }).
       otherwise({
         redirectTo: '/'
       });

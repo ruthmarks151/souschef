@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import sys
 import os
 from request_handler import request_handler
@@ -11,7 +11,7 @@ app = Flask(__name__, static_url_path='')
 
 @app.route('/recipe/get/first/<search>')
 def create_recipe(search):
-    return request_handler(RecipeGetter.getRecipe(search))
+    return jsonify(results=RecipeGetter.getRecipe(search))
 
 @app.route('/recipe/choose/<recipe_id>')
 def choose_recipe(recipe_id):
@@ -19,7 +19,8 @@ def choose_recipe(recipe_id):
 
 @app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
-    return json.dump(RecipeGetter.getAllUseableRecipes(search))
+    print 'looking for',search
+    return jsonify(results=RecipeGetter.getAllUseableRecipes(search))
 
 @app.route('/')
 def root():
@@ -32,7 +33,7 @@ def static_proxy(path):
 
 @app.route('/request/ingredients/')
 def request_ingredients():
-    return json.dump(rh.get_recipe().get_ingredients_raw())
+    return jsonify(results=rh.get_recipe().get_ingredients_raw())
 
 if __name__ == '__main__':  # pragma: no cover
     app.run(host='0.0.0.0', port=5001)
