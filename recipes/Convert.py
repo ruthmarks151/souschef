@@ -1,4 +1,4 @@
-def convert(value,current_unit,desired_unit):
+def convert_unit(value, current_unit, desired_unit):
     try:
         current = ureg.parse_expression(current_unit)
         desired = ureg.parse_expression(desired_unit)
