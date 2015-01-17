@@ -5,20 +5,35 @@
     <title>SousChef</title>
     <link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="main.css">
+    
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 </head>
 
 <body>
 
-    <button class="btn btn-default" onclick="StartSpeaking(event)">Start Listening</button>
-
-    <span id="result"></span>
-
+    <div class="bg">
+        <div class="bg-shiny"></div>
+    </div>
+    
+    <div class="container">
+    
+        <h1 style="font-family: 'Pacifico', cursive; font-size:50px;">SousChef!</h1>
+        
+        
+            <div class="input-group input-group-lg" style="margin-top:100px;">
+              <input type="text" class="form-control" placeholder="Search for recipes!">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+        
+    </div>
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-        function SpeakText(){
-        }
 
         if (!('webkitSpeechRecognition' in window)) {
             console.log('chrome does not have the speech api')
@@ -51,6 +66,7 @@
                               method: 'GET',
                               success: function(response) {
                                   console.log("Sent intent back to server and nothing failed!");
+                                  
                               }
                             });
                           }
@@ -62,14 +78,10 @@
           recognition.onerror = function(event) {console.log(event.error)}
           recognition.onend = function() {console.log(4);                                         }
         }
-        function StartSpeaking(event){
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "Speak!";
-            speechSynthesis.speak(msg);
+
             recognition.lang = 'en-US';
             recognition.start();
-        }
 
-    </script>
+        </script>
 </body>
 </html>
