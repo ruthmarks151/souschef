@@ -37,4 +37,4 @@ def getRecipe(search_term):
     url = getYummlyUrlFromRecipe(recipe)
     steps = StepScraper.getStepsFromYummlyUrl(url)
 
-    return Recipe(recipe.name, recipe.id, recipe.rating, recipe.ingredients, steps)
+    return Recipe(recipe.name, recipe.id, recipe.rating, recipe.ingredientLines, steps)
