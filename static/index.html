@@ -49,7 +49,9 @@
               console.log(final_transcript)
           }
           recognition.onerror = function(event) {console.log(event.error)}
-          recognition.onend = function() {console.log(4)}
+          recognition.onend = function() {console.log(4);
+                                         console.log('things said: ' + final_transcript)
+                                         }
         }
 
         function StartSpeaking(event){
