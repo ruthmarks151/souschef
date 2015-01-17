@@ -37,7 +37,7 @@ def getYummlyUrlFromRecipe(recipe):
     url = recipe.source.sourceRecipeUrl
     return url
 
-def getRecipeFromId(recipe_id):
+def getRecipeClassFromId(recipe_id):
     recipe = getRecipeFromId(recipe_id)
     url = getYummlyUrlFromRecipe(recipe)
     steps = StepScraper.getStepsFromYummlyUrl(url)
