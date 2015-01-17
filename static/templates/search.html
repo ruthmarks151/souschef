@@ -10,7 +10,7 @@
       </span>
     </div>
         </form>
-    <div style="margin-top:20px;" class="row row-eq-height">
+    <div style="margin-top:20px; max-height:100px" class="row row-eq-height">
         <div class="col-xs-12 col-sm-6 col-md-4 normalized-height" ng-repeat="option in searchOptions.results">
         <div class="panel panel-default" style="top-margin:10px;">
           <div class="panel-heading">
@@ -18,7 +18,7 @@
           </div>
           <div class="panel-body">
             <img ng-src="{{option.smallImageUrls[0]}}" class="img-responsive img-thumbnail" style="width:200px"/>
-            <i class="fa fa-star" ng-repeat="star in option.rating" style="margin-left:10px; max-height:100px"></i>
+            <i class="fa fa-star" ng-repeat="star in option.rating" style="margin-left:10px"></i>
             <h5>Ingredients</h5>
             <ul>
               <li ng-repeat="ingredient in option.ingredients|limitTo:5">{{ingredient}}</li>
