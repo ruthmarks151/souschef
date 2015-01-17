@@ -43,8 +43,5 @@ def static_proxy(path):
 def request_ingredients():
     return jsonify(results=rh.get_recipe().get_ingredients_raw())
 
-print 'test begins'
-#print (RecipeGetter.getRecipeFromId('Mini-French-Silk-Crescent-Pies-768334'))
-
 if __name__ == '__main__':  # pragma: no cover
     app.run(host='0.0.0.0', port=5001)

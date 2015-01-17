@@ -83,7 +83,6 @@ class Step:
                     return s
 
     def just_temp(self):
-        degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
         if self.temp_sentence:
             words = self.temp_sentence.split(' ')
             for word in words:
@@ -95,7 +94,6 @@ class Step:
                     pass
 
     def just_time(self):
-        degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
         if self.time_sentence:
             words = self.time_sentence.split(' ')
             for word in words:

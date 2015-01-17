@@ -25,6 +25,8 @@ class request_handler:
 
         return functions[request["intent"]](request)
 
+    def relevant_time(self,request):
+        pass
     def query_temp(self,request):
         return self.recipe.get_current_temp_text()
     def query_time(self,request):
