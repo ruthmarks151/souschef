@@ -9,7 +9,7 @@ App.config(['$routeProvider',
       }).
       when('/recipe', {
         templateUrl: 'templates/recipe.html',
-        controller: 'ContentController'
+        controller: 'RecipeController'
       }).
       otherwise({
         redirectTo: '/'
@@ -23,8 +23,10 @@ App.controller('ContentController', ['$scope','$http',function($scope, $http){
         })
     }
     
-    $scope.activateSpeechRecog = function(){
-        
+}])
+
+App.controller('RecipeController',['$scope',function($scope){
+   $scope.activateSpeechRecog = function(){
           var recognition = new webkitSpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = false;
@@ -62,8 +64,6 @@ App.controller('ContentController', ['$scope','$http',function($scope, $http){
                   }
               }
           }                                     
-        
-
             recognition.lang = 'en-US';
             recognition.start();
     }
