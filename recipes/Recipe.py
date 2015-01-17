@@ -6,6 +6,7 @@ class Recipe:
         self.recipe_id = recipe_id
         self.rating = rating
         self.ingredients = []
+        self.ingred_raw = ingredients
         self.steps = []
         self.picture_url = picture_url
         self.current_step = 0
@@ -35,6 +36,9 @@ class Recipe:
         return self.picture_url
 
     def get_ingredients_raw(self):
+        return self.ingreds_raw
+
+    def get_ingredients(self):
         return self.ingredients
 
     def get_current_temp_text(self):
