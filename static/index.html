@@ -36,11 +36,22 @@
 
           recognition.onstart = function() {console.log(1)}
           recognition.onresult = function(event) {
+              
+              
+              for (var i = event.resultIndex; i < event.results.length; ++i) {
+                  if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
+                  }
+              }
+              
               console.log(2);
               document.getElementById("result").innerHTML = final_transcript;
+              console.log(final_transcript)
           }
           recognition.onerror = function(event) {console.log(event.error)}
-          recognition.onend = function() {console.log(4)}
+          recognition.onend = function() {console.log(4);
+                                         console.log('things said: ' + final_transcript)
+                                         }
         }
 
         function StartSpeaking(event){
