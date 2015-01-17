@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app='SousChef'>
 <head>
     <title>SousChef</title>
+    <link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </head>
     
-<body>
+<body ng-controller="ContentController">
     
     <button class="btn btn-default" onclick="StartSpeaking(event)">Start Listening</button>
-    
+        
     <span id="result"></span>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
