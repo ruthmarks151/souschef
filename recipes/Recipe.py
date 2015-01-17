@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 class Recipe:
-    def __init__(self, name, recipe_id, rating, ingredients, steps):
+    def __init__(self, name, recipe_id, rating, ingredients, steps, picture_url):
         self.name = name
         self.recipe_id = recipe_id
         self.rating = rating
         self.ingredients = []
         self.steps = []
+        self.picture_url = picture_url
         self.current_step = 0
         for step in steps:
             if step is not '':
@@ -29,6 +30,9 @@ class Recipe:
 
     def get_current_step(self):
         return self.steps[self.current_step]
+
+    def get_picture_url(self):
+        return self.picture_url
 
     def get_current_temp_text(self):
         return self.get_current_step().get_temp_text()
