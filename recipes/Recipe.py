@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 
 class Recipe:
-    def __init__(self, name, id, rating, ingredients, steps):
-        self.steps = []
+    def __init__(self, name, recipe_id, rating, ingredients, steps):
+        self.name = name
+        self.recipe_id = recipe_id
+        self.rating = rating
         self.ingredients = []
+        self.steps = []
         self.current_step = 0
         for step in steps:
             if step is not '':
@@ -22,7 +25,7 @@ class Recipe:
         return self.total_time
 
     def get_recipe_id(self):
-        return self.id
+        return self.recipe_id
 
     def get_current_step(self):
         return self.steps[self.current_step]
