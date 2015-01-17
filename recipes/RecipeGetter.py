@@ -32,7 +32,7 @@ def getAllUseableRecipes(search_term):
             x += 1
             if match.sourceDisplayName in allowed_recipe_sources:
                 good_matches.append(match)
-        return good_matches
+    return good_matches
 
 def getRecipeFromId(recipe_id):
     return client.recipe(recipe_id)
