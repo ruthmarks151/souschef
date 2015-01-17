@@ -17,7 +17,7 @@ def getFirstUseableRecipeId(params):
 def getRecipeFromId(id):
     return client.recipe(id)
 
-def getSourceFromRecipe(recipe):
+def getYummlyUrlFromRecipe(recipe):
     url = recipe.source.sourceRecipeUrl
     return url
 
@@ -28,5 +28,4 @@ search_params = {
     'requirePicutres': True
 }
 
-def getSteps():
-    return 4
+def getRecipe(search_term):
