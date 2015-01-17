@@ -30,7 +30,11 @@
               </span>
             </div>
 
+        
+                        <button class="btn btn-default" type="button" ng-click="activateSpeechRecog()">speech!</button>
+
     </div>
+
 
     <script>
           var recognition = new webkitSpeechRecognition();
@@ -74,7 +78,6 @@
 
             recognition.lang = 'en-US';
             recognition.start();
-
         </script>
 </body>
 </html>
