@@ -86,12 +86,13 @@ class Step:
 
 class Ingredient:
     def __init__(self, raw_text):
-        text = raw_text.split();
+        self.raw_text = raw_text
+        text = raw_text.split()
         amount = []
         for word in text:
             try:
                 if type(eval(word)) == int or type(eval(word)) == float:
-                    amount.append(word);
+                    amount.append(word)
             except:
                 break
         self.unit = text[len(amount)]
@@ -99,6 +100,9 @@ class Ingredient:
             del text[0]
         self.name = ' '.join(text)
         self.amount = amount
+
+    def get_raw(self):
+        return self.raw_text
 
     def get_name(self):
         return self.name
