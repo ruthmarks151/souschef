@@ -2,7 +2,7 @@ from yummly import Client
 from Recipe import *
 import StepScraper
 
-TIMEOUT = 5.0
+TIMEOUT = 2.0
 RETRIES = 0
 
 client = Client(api_id = '0ad05d37', api_key = 'b616f863887a7d2cb6d4baf30cd3cbe2', timeout = TIMEOUT, retries = RETRIES)
