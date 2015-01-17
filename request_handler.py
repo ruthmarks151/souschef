@@ -11,14 +11,14 @@ class request_handler:
 
     def handle_request(self,request):
         functions = {
-        'query_temp': self.query_temp,
-        'query_time': self.query_time,
-        'convert_unit': self.convert_unit,
-        'send_timer': self.send_timer,
-        'get_current_step': self.get_current_step,
-        'next_step': self.next_step,
-        'previous_step': self.previous_step,
-        'ingredients': self.ingredients
+            'query_temp': self.query_temp,
+            'query_time': self.query_time,
+            'convert_unit': self.convert_unit,
+            'send_timer': self.send_timer,
+            'get_current_step': self.get_current_step,
+            'next_step': self.next_step,
+            'previous_step': self.previous_step,
+            'ingredients': self.ingredients
         }
 
         return functions[request["intent"]](request)
