@@ -34,6 +34,9 @@ class Recipe:
     def get_picture_url(self):
         return self.picture_url
 
+    def get_ingredients_raw(self):
+        return self.ingredients
+
     def get_current_temp_text(self):
         return self.get_current_step().get_temp_text()
 
