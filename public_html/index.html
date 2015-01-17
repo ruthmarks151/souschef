@@ -38,6 +38,7 @@
           recognition.onresult = function(event) {
               console.log(2);
               document.getElementById("result").innerHTML = final_transcript;
+              console.log(final_transcript)
           }
           recognition.onerror = function(event) {console.log(event.error)}
           recognition.onend = function() {console.log(4)}
