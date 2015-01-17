@@ -6,4 +6,4 @@ def hello():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host='104.236.40.40', port=80, debug=true)                                     
+    app.run(host='104.236.40.40', port=80)                                     
