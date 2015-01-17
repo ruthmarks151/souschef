@@ -30,8 +30,8 @@ def getAllUseableRecipes(search_term):
             good_matches.append(match)
     return good_matches
 
-def getRecipeFromId(id):
-    return client.recipe(id)
+def getRecipeFromId(recipe_id):
+    return client.recipe(recipe_id)
 
 def getYummlyUrlFromRecipe(recipe):
     url = recipe.source.sourceRecipeUrl
