@@ -15,7 +15,13 @@ def getFirstUseableRecipeId(params):
         if match.sourceDisplayName in allowed_recipe_sources:
             return match.id
 
-def getAllUseableRecipes(params):
+def getAllUseableRecipes(search_term):
+    search_params = {
+        'q': search_term,
+        'start': 0,
+        'maxResults': 100,
+        'requirePicutres': True
+    }
     results = client.search(**params)
     matches = results.matches
     good_matches = []
