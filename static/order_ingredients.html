@@ -1,6 +1,8 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://saunter.org/janky.post/scripts/json2.js"></script>
+    <script src="http://saunter.org/janky.post/lib/janky.post.min.js"></script>
   </head>
   <body>
 
@@ -40,34 +42,22 @@
           }
         }
 
-        $.ajax({
-          type: "POST",
-          dataType: 'jsonp',
-          url: "https://api.postmates.com/v1/customers/" + customer_id + "/delivery_quotes",
+        janky({
+          url: "https://api.postmates.com/v1/customers/cus_KAd5ZzI0-yICtF/delivery_quotes",
+          method: "post",
           username: api_key,
-          crossDomain : true,
+          password: "",
           data: {
-            "username": api_key,
-            "pickup_address": "20 McAllister St, San Francisco, CA",
-            "dropoff_address": "101 Market St, San Francisco, CA"
-          }
-        })
-        .done(function(fee) {
-          console.log(fee);
-        })
-        .fail(function(){
-          console.log("nope");
-        });
-
-        /*$.post("https://api.postmates.com/v1/customers/" + customer_id + "/delivery_quotes/",
-          {
-            username: api_key,
             pickup_address: "20 McAllister St, San Francisco, CA",
             dropoff_address: "101 Market St, San Francisco, CA"
           },
-          function(fee){
+          success: function(fee) {
             alert(fee);
-          });*/
+          },
+          error: function() {
+            console.log('there was an error');
+          }
+        });
 
       }
     </script>
