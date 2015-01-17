@@ -39,7 +39,7 @@
                     $.ajax({
                       url: 'https://api.wit.ai/message',
                       data: {
-                        'q': event.results[i].isFinal,
+                        'q': event.results[i][0].transcript
                         'access_token' : 'SMRYKLMQBVUVUFDAPTPTXLY6H2ZM4DQU '
                       },
                       dataType: 'jsonp',
