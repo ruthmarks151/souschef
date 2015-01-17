@@ -41,6 +41,7 @@
                   if (event.results[i].isFinal && event.results[i][0].transcript == "Sue") {
                     alert("The trigeger word 'Sue' has been detected")
                   }
+                  console.log(event.results[i][0].transcript);
               }
               
               console.log(2);
@@ -48,9 +49,7 @@
               console.log(final_transcript)
           }
           recognition.onerror = function(event) {console.log(event.error)}
-          recognition.onend = function() {console.log(4);
-                                         console.log('things said: ' + final_transcript)
-                                         }
+          recognition.onend = function() {console.log(4);                                         }
         }
 
         function StartSpeaking(event){
