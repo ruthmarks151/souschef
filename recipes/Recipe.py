@@ -90,7 +90,7 @@ class Ingredient:
         amount = []
         for word in text:
             try:
-                if type(eval(word)) == int:
+                if type(eval(word)) == int or type(eval(word)) == float:
                     amount.append(word);
             except:
                 break
