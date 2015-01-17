@@ -16,6 +16,7 @@ def getFirstUseableRecipeId(params):
             return match.id
 
 def getAllUseableRecipes(search_term):
+    good_matches = []
     for i in range(10):
         search_params = {
             'q': search_term,
@@ -25,7 +26,6 @@ def getAllUseableRecipes(search_term):
         }
         results = client.search(**search_params)
         matches = results.matches
-        good_matches = []
         for match in matches:
             if match.sourceDisplayName in allowed_recipe_sources:
                 good_matches.append(match)
