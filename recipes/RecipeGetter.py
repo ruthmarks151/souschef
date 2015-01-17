@@ -12,7 +12,7 @@ def getFirstUseableRecipeId(params):
     matches = results.matches
     for match in matches:
         if match.sourceDisplayName in allowed_recipe_sources:
-        return match
+            return match.id
 
 def getRecipeFromId(id):
     return client.recipe(id)
@@ -29,3 +29,4 @@ search_params = {
 }
 
 def getRecipe(search_term):
+    return 4
