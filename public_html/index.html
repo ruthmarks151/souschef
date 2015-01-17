@@ -9,6 +9,8 @@
     
     <button class="btn btn-default" onclick="StartSpeaking(event)">Start Listening</button>
     
+    <span id="result"></span>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
         function SpeakText(){
@@ -20,19 +22,25 @@
         if (!('webkitSpeechRecognition' in window)) {
             console.log('chrome does not have the speech api')
         } else {
+          var recognizing;
           var recognition = new webkitSpeechRecognition();
           var final_transcript = '';
 
-          recognition.continuous = true;
-          recognition.interimResults = true;
+          recognition.continuous = false;
+          recognition.interimResults = false;
 
           recognition.onstart = function() {console.log(1)}
-          recognition.onresult = function(event) {console.log(2)}
+          recognition.onresult = function(event) {
+              console.log(2);
+              document.getElementById("result").innerHTML = final_transcript;
+          }
           recognition.onerror = function(event) {console.log(event.error)}
           recognition.onend = function() {console.log(4)}
         }
 
         function StartSpeaking(event){
+            final_transcript = '';
+            recognizing = true;
             recognition.lang = 'en-US';
             recognition.start();
         }
