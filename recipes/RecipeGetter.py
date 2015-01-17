@@ -22,7 +22,7 @@ def getAllUseableRecipes(search_term):
         'maxResults': 100,
         'requirePicutres': True
     }
-    results = client.search(**params)
+    results = client.search(**search_params)
     matches = results.matches
     good_matches = []
     for match in matches:
