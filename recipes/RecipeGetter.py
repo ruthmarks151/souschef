@@ -30,8 +30,8 @@ def getRecipe(search_term):
         'requirePicutres': True
     }
     recipe_id = getFirstUseableRecipeId(search_params)
-    if recipe_id == 4:
-        return 0
+    if recipe_id == None:
+        return None
 
     recipe = getRecipeFromId(recipe_id)
     url = getYummlyUrlFromRecipe(recipe)
