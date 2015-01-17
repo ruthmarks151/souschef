@@ -13,7 +13,7 @@ class Recipe:
                 self.steps.append(Step(step))
 
         for ingredient in ingredients:
-            self.ingredients.append(ingredient)
+            self.ingredients.append(Ingredient(ingredient))
 
     def get_recipe_name(self):
         return self.name
@@ -79,3 +79,34 @@ class Step:
 
     def get_step_text(self):
         return self.text
+
+class Ingredient:
+    def __init__(self, raw_text):
+        text = raw_text.split();
+        amount = []
+        for word in text:
+            try:
+                if type(eval(word)) == int:
+                    amount.append(word);
+            except:
+                break
+        self.unit = text[len(amount)]
+        for i in range(len(amount) + 1):
+            del text[0]
+        self.name = ' '.join(text)
+        self.amount = amount
+
+    def get_name(self):
+        return self.name
+
+    def get_amount_number(self):
+        total = 0
+        for i in self.amount:
+            total += eval(i + ".0")
+        return total
+
+    def get_amount_string(self):
+        return ' '.join(self.amount)
+
+    def get_unit(self):
+        return self.unit
