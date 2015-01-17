@@ -15,12 +15,28 @@ def getFirstUseableRecipeId(params):
         if match.sourceDisplayName in allowed_recipe_sources:
             return match.id
 
+def getAllUseableRecipes(params):
+    results = client.search(**params)
+    matches = results.matches
+    good_matches = []
+    for match in matches:
+        if match.sourceDisplayName in allowed_recipe_sources:
+            good_matches.append(match)
+    return good_matches
+
 def getRecipeFromId(id):
     return client.recipe(id)
 
 def getYummlyUrlFromRecipe(recipe):
     url = recipe.source.sourceRecipeUrl
     return url
+
+def getRecipeFromId(recipe_id):
+    recipe = getRecipeFromId(recipe_id)
+    url = getYummlyUrlFromRecipe(recipe)
+    steps = StepScraper.getStepsFromYummlyUrl(url)
+
+    return Recipe(recipe.name, recipe.id, recipe.rating, recipe.ingredientLines, steps, recipe.images[0].hostedLargeUrl)
 
 def getRecipe(search_term):
     search_params = {

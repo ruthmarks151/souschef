@@ -10,15 +10,19 @@
         var api_key = "e602eb3b-e66b-41d0-930b-e8e9fb9b2c0e";
         var customer_id = "cus_KAd5ZzI0-yICtF";
 
-        var ingredientList = [];//["1 Cup", "34", "adrg"];
+        var ingredientList = ["1 Cup", "34", "adrg"];
 
-        $.get("104.236.40.40",
+        /*$.get("http://104.236.40.40",
         {
           intent: "ingredients"
         },
         function(ingredients){
-          ingredientList = ingredients;
-        });
+          for(var i in ingredients) {
+            if(ingredients.hasOwnProperty(i) && !isNaN(+i)) {
+                ingredientList[+i] = ingredients[i];
+            }
+          }
+        });*/
 
         for(i = 0; i < ingredientList.length; i++){
           document.write("<input type=\"checkbox\" value=\"" + ingredientList[i] + "\" name=\"ingredient\">" + ingredientList[i] + "<br>");

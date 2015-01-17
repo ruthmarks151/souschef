@@ -9,6 +9,9 @@ class request_handler:
     def __init__(self,recipe):
         self.recipe = recipe
 
+    def get_recipe(self):
+        return self.recipe
+
     def handle_request(self,request):
         functions = {
             'query_temp': self.query_temp,
@@ -18,7 +21,6 @@ class request_handler:
             'get_current_step': self.get_current_step,
             'next_step': self.next_step,
             'previous_step': self.previous_step,
-            'ingredients': self.ingredients
         }
 
         return functions[request["intent"]](request)
@@ -37,5 +39,3 @@ class request_handler:
         return self.recipe.get_next_step().get_step_text()
     def previous_step(self,request):
         return self.recipe.get_previous_step().get_step_text()
-    def ingredients(self,request):
-        return json.dumps(self.recipe.get_ingredients())
