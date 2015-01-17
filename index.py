@@ -8,6 +8,7 @@ import json
 
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
+rh = None
 
 @app.route('/recipe/get/first/<search>')
 def create_recipe(search):
@@ -15,7 +16,14 @@ def create_recipe(search):
 
 @app.route('/recipe/choose/<recipe_id>')
 def choose_recipe(recipe_id):
-    return request_handler(RecipeGetter.getRecipeFromId(recipe_id))
+    global rh
+    recipe_id = recipe_id.encode('ascii','ignore')
+    print 'called with',recipe_id
+    r = RecipeGetter.getRecipeFromId(recipe_id)
+    print 'got recipe'
+    rh = request_handler(r)
+    print 'set rh'
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
@@ -34,6 +42,9 @@ def static_proxy(path):
 @app.route('/request/ingredients/')
 def request_ingredients():
     return jsonify(results=rh.get_recipe().get_ingredients_raw())
+
+print 'test begins'
+#print (RecipeGetter.getRecipeFromId('Mini-French-Silk-Crescent-Pies-768334'))
 
 if __name__ == '__main__':  # pragma: no cover
     app.run(host='0.0.0.0', port=5001)
