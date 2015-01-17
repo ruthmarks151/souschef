@@ -7,7 +7,7 @@ class Recipe:
         self.current_step = 0
         for step in steps:
             if step is not '':
-                self.steps.append(Step.Step(step))
+                self.steps.append(Step(step))
 
         for ingredient in ingredients:
             self.ingredients.append(ingredient)
@@ -15,17 +15,15 @@ class Recipe:
     def get_current_step(self):
         return self.steps[self.current_step]
 
-    def get_current_temp_step(self):
+    def get_current_temp_text(self):
         return self.get_current_step().get_temp_text()
 
-    def get_current_time_step(self):
-        return self.get_current_step().get_time_text
-        ()
+    def get_current_time_text(self):
+        return self.get_current_step().get_time_text()
 
     def next_step(self):
         self.current_step += 1
         return self.get_current_step()
-
 
 class Step:
     def __init__ (self,raw_text):
@@ -53,10 +51,10 @@ class Step:
                 if w in s:
                     return s
 
-    def get_time_step(self):
+    def get_time_text(self):
         return self.time_sentence
 
-    def get_temp_step(self):
+    def get_temp_text(self):
         return self.temp_sentence
 
 
