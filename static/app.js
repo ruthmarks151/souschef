@@ -1,5 +1,21 @@
 var App = angular.module('SousChef', []);
 
+App.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'templates/search.html',
+        controller: 'ContentController'
+      }).
+      when('/', {
+        templateUrl: 'templates/recipe.html',
+        controller: 'ContentController'
+      })
+      otherwise({
+        redirectTo: '/'
+      });
+  }]);
+
 App.controller('ContentController', ['$scope','$http',function($scope, $http){
     $scope.submitSearch = function (){
         $http.get('/recipe/get/all/'+$scope.searchValue).success(function(data){
