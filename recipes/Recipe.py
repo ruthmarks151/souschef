@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 class Recipe:
-    def __init__(self, name, id, rating ingredients, steps):
+    def __init__(self, name, id, rating, ingredients, steps):
         self.steps = []
         self.ingredients = []
         self.current_step = 0
