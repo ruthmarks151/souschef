@@ -18,8 +18,8 @@
           </div>
           <div class="panel-body">
             <img ng-src="{{option.smallImageUrls[0]}}" class="img-responsive img-thumbnail" style="width:200px"/>
-            <i class="fa fa-star" ng-repeat="star in option.rating" style="margin-left:10px;"></i>
-            <h5>Ingredients</h5>  
+            <i class="fa fa-star" ng-repeat="star in option.rating" style="margin-left:10px; max-height:200px"></i>
+            <h5>Ingredients</h5>
             <ul>
               <li ng-repeat="ingredient in option.ingredients|limitTo:5">{{ingredient}}</li>
               </ul>
