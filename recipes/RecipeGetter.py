@@ -30,7 +30,7 @@ def getRecipe(search_term):
         'requirePicutres': True
     }
     recipe_id = getFirstUseableRecipeId(search_params)
-    if recipe_id = 4:
+    if recipe_id == 4:
         return 0
 
     recipe = getRecipeFromId(recipe_id)

@@ -71,21 +71,3 @@ class Step:
 
     def get_temp_text(self):
         return self.temp_sentence
-
-
-copied_text = """Preheat oven to 450degF. Place beef bones, carrots, leek, onion, and garlic on a roasting pan or rimmed baking sheet and roast for 20 minutes. Toss the contents of the pan and continue to roast until deeply browned, 10 to 20 minutes more.
-
-Fill a large (at least 6-quart) stockpot with 12 cups of water (preferably filtered) . Add celery, bay leaves, peppercorns, and vinegar. Scrape the roasted bones and vegetables into the pot along with any juices. Add more water if necessary to cover bones and vegetables.
-
-Cover the pot and bring to a gentle boil. Reduce heat to a very low simmer and cook with lid slightly ajar, skimming foam and excess fat occasionally, for at least 8 but up to 24 hours on the stovetop. The longer you simmer it, the better your stock will be. Add more water if necessary to ensure bone and vegetables are fully submerged. Alternately, you can cook the broth in a slow cooker on low for the same amount of time.
-
-Remove the pot from the heat and let cool slightly. Strain broth using a fine-mesh sieve and discard bones and vegetables. Let continue to cool until barely warm, then refrigerate in smaller containers overnight. Remove solidified fat from the top of the chilled broth."""
-
-
-
-#print(copied_text.split('\n'))
-r = Recipe(copied_text.split('\n'),["pies"])
-for i in range(10):
-    print(r.get_current_temp_text())
-    print(r.get_current_time_text())
-    r.next_step()
