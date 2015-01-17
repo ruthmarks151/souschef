@@ -51,7 +51,7 @@ class request_handler:
             for i in ingred.getName().split():
                 for word in words_in_phrase:
                     if(word.lower() == i.lower()):
-                        matches++;
+                        matches += 1
             if matches > highest_matching:
                 highest_matching = matches
                 best_match = ingred
