@@ -40,7 +40,26 @@
           }
         }
 
-        $.post("https://api.postmates.com/v1/customers/" + customer_id + "/delivery_quotes",
+        $.ajax({
+          type: "POST",
+          dataType: 'jsonp',
+          url: "https://api.postmates.com/v1/customers/" + customer_id + "/delivery_quotes",
+          username: api_key,
+          crossDomain : true,
+          data: {
+            "username": api_key,
+            "pickup_address": "20 McAllister St, San Francisco, CA",
+            "dropoff_address": "101 Market St, San Francisco, CA"
+          }
+        })
+        .done(function(fee) {
+          console.log(fee);
+        })
+        .fail(function(){
+          console.log("nope");
+        });
+
+        /*$.post("https://api.postmates.com/v1/customers/" + customer_id + "/delivery_quotes/",
           {
             username: api_key,
             pickup_address: "20 McAllister St, San Francisco, CA",
@@ -48,7 +67,7 @@
           },
           function(fee){
             alert(fee);
-          });
+          });*/
 
       }
     </script>
