@@ -40,6 +40,11 @@ class Recipe:
         self.current_step += 1
         return self.get_current_step()
 
+    def previous_step(self):
+        if self.current_step > 0:
+            self.current_step -= 1
+        return self.get_current_step()
+
 class Step:
     def __init__ (self,raw_text):
         self.text = raw_text
@@ -71,3 +76,6 @@ class Step:
 
     def get_temp_text(self):
         return self.temp_sentence
+
+    def get_step_text(self):
+        return self.text
