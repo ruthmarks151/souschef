@@ -55,6 +55,8 @@ class Recipe:
 class Step:
     def __init__ (self,raw_text):
         self.text = raw_text
+        self.time_strings = ['minutes','minute','hour','hours','seconds']
+        self.degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
         self.temp_sentence = self.extract_temp_step(self.text)
         self.time_sentence = self.extract_time_step(self.text)
         self.ingredients = []
@@ -62,21 +64,43 @@ class Step:
     def extract_temp_step(self,text):
         text = text.lower()
         sentences = text.split('.')
-        degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
         for s in sentences:
-            for w in degree_strings:
+            for w in self.degree_strings:
                 if w in s:
                     return s
 
     def extract_time_step(self,text):
         text = text.lower()
         sentences = text.split('.')
-        time_strings = ['minutes','minute','hour','hours','seconds']
-        time_sentences = [s for s in sentences if any(word in s for word in time_strings)]
+        time_sentences = [s for s in sentences if any(word in s for word in self.time_strings)]
         for s in sentences:
             for w in time_sentences:
                 if w in s:
                     return s
+
+    def just_temp(self):
+        degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
+        if self.temp_sentence:
+            words = self.temp_sentence.split(' ')
+            for word in words:
+                try:
+                    float(word)
+                    if words[words.index(word)+1] in self.degree_strings:
+                        return word+" "+words[words.index(word)+1]
+                except:
+                    pass
+
+    def just_time(self):
+        degree_strings = ['degrees','deg',chr(248),'\xc2',' f ','fahrenheit',' c ','celcius','\xc2\xb0']
+        if self.time_sentence:
+            words = self.time_sentence.split(' ')
+            for word in words:
+                try:
+                    float(word)
+                    if words[words.index(word)+1] in self.time_strings:
+                        return word+" "+words[words.index(word)+1]
+                except:
+                    pass
 
     def get_time_text(self):
         return self.time_sentence
