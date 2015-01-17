@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 class Recipe:
-    def __init__(self,steps,ingredients):
+    def __init__(self, name, id, rating ingredients, steps):
         self.steps = []
         self.ingredients = []
         self.current_step = 0
@@ -11,6 +11,18 @@ class Recipe:
 
         for ingredient in ingredients:
             self.ingredients.append(ingredient)
+
+    def get_recipe_name(self):
+        return self.name
+
+    def get_recipe_rating(self):
+        return self.rating
+
+    def get_recipe_total_time(self):
+        return self.total_time
+
+    def get_recipe_id(self):
+        return self.id
 
     def get_current_step(self):
         return self.steps[self.current_step]

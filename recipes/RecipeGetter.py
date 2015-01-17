@@ -1,4 +1,5 @@
 from yummly import Client
+from Recipe import *
 import StepScraper
 
 TIMEOUT = 5.0
@@ -21,12 +22,19 @@ def getYummlyUrlFromRecipe(recipe):
     url = recipe.source.sourceRecipeUrl
     return url
 
-search_params = {
-    'q': "bacon",
-    'start': 0,
-    'maxResults': 100,
-    'requirePicutres': True
-}
-
 def getRecipe(search_term):
-    return 4
+    search_params = {
+        'q': search_term,
+        'start': 0,
+        'maxResults': 100,
+        'requirePicutres': True
+    }
+    recipe_id = getFirstUseableRecipeId(search_params)
+    if recipe_id = 4:
+        return 0
+
+    recipe = getRecipeFromId(recipe_id)
+    url = getYummlyUrlFromRecipe(recipe)
+    steps = StepScraper.getStepsFromYummlyUrl(url)
+
+    return Recipe(recipe.name, recipe.id, recipe.rating, recipe.ingredients, steps)
