@@ -7,7 +7,7 @@ RETRIES = 0
 
 client = Client(api_id = '0ad05d37', api_key = 'b616f863887a7d2cb6d4baf30cd3cbe2', timeout = TIMEOUT, retries = RETRIES)
 
-allowed_recipe_sources = ["Pillsbury Brand", "Betty Crocker", "Tablespoon"]
+allowed_recipe_sources = ["Pillsbury Brand", "Betty Crocker", "Tablespoon", "Life Made Delicious"]
 def getFirstUseableRecipeId(params):
     results = client.search(**params)
     matches = results.matches
