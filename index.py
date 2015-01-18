@@ -33,7 +33,7 @@ def return_speech():
     global rh
     response = rh.handle_request(request)
     print response
-    return jsonify(results=response)
+    return str(response)
 
 @app.route('/')
 def root():
