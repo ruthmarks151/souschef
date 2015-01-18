@@ -40,23 +40,23 @@ class request_handler:
         return self.recipe.next_step().get_step_text()
 
     def ingredients(self, request):
-        return find_best_ingredient_amount(request.args.get('_text'))
+        return self.find_best_ingredient_amount(request.args.get('_text'))
     
-    def find_best_ingredient_amount(phrase):
-        words_in_phrase = phrase.split()
-        ingredients = recipe.get_ingredients()
+    def find_best_ingredient_amount(self,phrase):
+        words_in_phrase = phrase.split(" ")
+        ingredients = self.recipe.get_ingredients()
         highest_matching = 0
         best_match = None
         for ingred in ingredients:
             matches = 0
-            for i in ingred.getName().split():
+            for i in ingred.get_raw().split(" "):
                 for word in words_in_phrase:
                     if(word.lower() == i.lower()):
                         matches += 1
             if matches > highest_matching:
                 highest_matching = matches
                 best_match = ingred
-        return "You need " + ingred.get_amount_string() + " " + ingred.get_unts() + " of " + ingred.getName()
+        return "You need " + best_match.get_amount_string() + " " + best_match.get_unit() + " of " + best_match.get_name()
 
     def previous_step(self,request):
         return self.recipe.previous_step().get_step_text()

@@ -59,7 +59,7 @@ App.factory('speechAPI', function($http){
                                         console.log("Sue: ", response.responseText);
                                         var xmlHttp = null;
                                             xmlHttp = new XMLHttpRequest();
-                                            xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent(response.responseText), false );
+                                            xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent(response.responseText.replace("/"," over ")), false );
                                             xmlHttp.send( null );
 
                                     }
