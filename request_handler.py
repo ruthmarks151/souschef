@@ -78,7 +78,7 @@ class request_handler:
                 continue
 
         milliseconds = Convert.convert_unit(numbers[0], units[0], "milliseconds")
-        return "set a timer for " + str(milliseconds)
+        return "<" + str(milliseconds) + ">"
 
     def parse_unit_conversion(self, request):
 
