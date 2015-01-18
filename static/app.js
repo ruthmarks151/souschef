@@ -56,6 +56,14 @@ App.controller('RecipeController',['$scope',function($scope){
                               method: 'GET',
                               complete: function(response) {
                                   console.log("Sue: ",response.responseText);
+                                    var msg = new SpeechSynthesisUtterance();
+                                    msg.rate = 1; // 0.1 to 10
+                                    msg.pitch = 2; //0 to 2
+                                    msg.text = response.responseText;
+                                    msg.lang = 'en-US';
+
+                                    speechSynthesis.speak(msg);
+
 
                               }
                             });
@@ -68,4 +76,7 @@ App.controller('RecipeController',['$scope',function($scope){
             recognition.lang = 'en-US';
             recognition.start();
     }
+   
+  
+   
 }])
