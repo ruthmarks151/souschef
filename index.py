@@ -44,14 +44,27 @@ def return_speech():
 
 @app.route('/postmates/get/quote')
 def get_postmates_quote():
+    print 1
     pickup_addr = request.args.get("pickup_address")
     dropoff_addr = request.args.get("dropoff_address")
-    print pickup_addr
-    print dropoff_addr
     return postmates.post_delivery_quote(pickup_addr, dropoff_addr).json()
 
 @app.route('/postmates/create/delivery')
 def create_postamtes_order():
+    params = {
+        manifest: ""
+        pickup_name: ""
+        pickup_address: ""
+        pickup_phone_number: ""
+        pickup_business_name: ""
+        pickup_notes: ""
+        dropoff_name: ""
+        dropoff_address: ""
+        dropoff_phone_number: ""
+        dropoff_business_name: ""
+        dropoff_notes: ""
+        quote_id: ""
+    }
     return postmates.post_create_delivery()
 
 
