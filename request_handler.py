@@ -83,5 +83,5 @@ class request_handler:
                     units.append(words[i + 1])
                 continue
 
-        final_string = str(numbers[0]) + " " + str(units[0]) + " is equal to " + str(Convert.convert_unit(numbers[0], units[0], units[1]))
+        final_string = str(numbers[0]) + " " + str(units[0]) + " is equal to " + str(Convert.convert_unit(numbers[0], units[0], units[1])) + " " + units[1]
         return final_string
