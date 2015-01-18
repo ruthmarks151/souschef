@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import sys
 import os
+import urllib
 from request_handler import request_handler
 sys.path.insert(0, './recipes/')
 import RecipeGetter
@@ -14,6 +15,11 @@ rh = None
 @app.route('/recipe/get/first/<search>')
 def create_recipe(search):
     return jsonify(results=RecipeGetter.getRecipe(search))
+
+@app.route('/say/<phrase>')
+def create_recipe(phrase):
+    urllib.unquote(phrase)
+    os.system("say "+'"urllib.unquote(phrase)"')
 
 @app.route('/recipe/<recipe_id>')
 def choose_recipe(recipe_id):
