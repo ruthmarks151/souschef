@@ -38,7 +38,11 @@ def return_speech():
 
 @app.route('/postmates/get/quote')
 def get_postmates_quote():
-    return postmates.post_delivery_quote(request.args.get("pickup_address").encode('ascii','ignore'), request.args.get("dropoff_address").encode('ascii','ignore')).json()
+    pickup_addr = request.args.get("pickup_address").encode('ascii','ignore')
+    dropoff_addr = request.args.get("dropoff_address").encode('ascii','ignore')
+    print pickup_addr
+    print dropoff_addr
+    return postmates.post_delivery_quote(pickup_addr, dropoff_addr).json()
 
 @app.route('/postmates/create/delivery')
 def create_postamtes_order():
