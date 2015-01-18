@@ -36,12 +36,12 @@ def return_speech():
     print response
     return str(response)
 
-@app.route('/postmates/get/quote/<params>')
-def get_postmates_quote(params):
-    return postmates.post_delivery_quote(params[0], params[1]).json()
+@app.route('/postmates/get/quote')
+def get_postmates_quote():
+    return postmates.post_delivery_quote(request.args.get("pickup_address"), request.args.get("dropoff_address")).json()
 
-@app.route('/postmates/create/delivery/<params>')
-def create_postamtes_order(params):
+@app.route('/postmates/create/delivery')
+def create_postamtes_order():
     return postmates.post_create_delivery()
 
 
