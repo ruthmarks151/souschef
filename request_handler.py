@@ -22,12 +22,11 @@ class request_handler:
             'get_current_step': self.get_current_step,
             'next_step': self.next_step,
             'previous_step': self.previous_step,
-            'ingredients': self.ingredients
+            'ingredients': self.ingredients,
+            'send_time': self.send_time
         }
 
         return functions[intent](request)
-
-
 
     def relevant_time(self,request):
         pass
@@ -61,6 +60,9 @@ class request_handler:
 
     def ingredients(self, request):
         return find_best_ingredient_amount(request)
+
+    def send_time(self, request):
+        print "Sending time?"
 
     def parse_unit_conversion(self, request):
         print "Parsing unit conversion"
