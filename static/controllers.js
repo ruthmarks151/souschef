@@ -11,5 +11,4 @@ App.controller('RecipeController',['$scope', 'speechAPI','Request','$routeParams
     Request.recipeByID($routeParams.recipeid).success(function(data){
         $scope.recipe = data;
     })
-    
 }])
