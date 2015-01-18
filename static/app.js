@@ -93,7 +93,8 @@ App.controller('RecipeController',['$scope', '$routeParams','$http',function($sc
 
                                     },
                                     complete: function(response) {
-                                        if response.responseText[0] != '<'{
+					alert(response.responseText.indexOf('<'))
+                                        if response.responseText.indexOf('<') == -1{
                                         console.log("Sue: ", response.responseText);
                                         var msg = new SpeechSynthesisUtterance();
                                         msg.rate = 1; // 0.1 to 10
