@@ -14,7 +14,7 @@ rh = None
 def create_recipe(search):
     return jsonify(results=RecipeGetter.getRecipe(search))
 
-@app.route('/recipe/choose/<recipe_id>')
+@app.route('/recipe/<recipe_id>')
 def choose_recipe(recipe_id):
     global rh
     recipe_id = recipe_id.encode('ascii','ignore')

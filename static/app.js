@@ -1,21 +1,20 @@
 var App = angular.module('SousChef', ['ngRoute']);
 
 App.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/', {
-            templateUrl: 'templates/search.html',
-            controller: 'ContentController'
-        }).
-        when('/recipe', {
-            templateUrl: 'templates/recipe.html',
-            controller: 'RecipeController'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-    }
-]);
+  function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'templates/search.html',
+        controller: 'ContentController'
+      }).
+      when('/recipe/:recipeid', {
+        templateUrl: 'templates/recipe.html',
+        controller: 'RecipeController'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+  }]);
 
 App.controller('ContentController', ['$scope', '$http', function($scope, $http) {
     $scope.submitSearch = function() {
@@ -23,20 +22,25 @@ App.controller('ContentController', ['$scope', '$http', function($scope, $http) 
             $scope.searchOptions = data;
         })
     }
+    $scope.hitserver = function(id) {
+        var url = "/recipe/" + id
+        $http.get(url).success(function(data) {
+            console.log(data)
+        })
+    }
 
 }])
 
-App.controller('RecipeController', ['$scope', function($scope) {
-    $scope.activateSpeechRecog = function() {
-        var recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = false;
-        recognition.onstart = function() {
-            console.log('Speech Recognition Commencing')
-        }
-        recognition.onresult = function(event) {
-            for (var i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
+App.controller('RecipeController',['$scope', '$routeParams','$http',function($scope, $routeParams, $http){
+    
+    
+          var recognition = new webkitSpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = false;
+          recognition.onstart = function() {console.log('Speech Recognition Commencing')}
+          recognition.onresult = function(event) {
+              for (var i = event.resultIndex; i < event.results.length; ++i) {
+                  if (event.results[i].isFinal) {
                     $.ajax({
                         url: 'https://api.wit.ai/message',
                         data: {
@@ -113,10 +117,14 @@ App.controller('RecipeController', ['$scope', function($scope) {
                             }
                         }
                     });
-                }
-            }
-        }
-        recognition.lang = 'en-US';
-        recognition.start();
-    }
+
+                  }
+              }
+          }
+            recognition.lang = 'en-US';
+            recognition.start();
+    
+   
+  
+   
 }])

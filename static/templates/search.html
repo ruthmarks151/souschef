@@ -12,7 +12,7 @@
         </form>
     <div style="margin-top:20px" class="row row-eq-height">
         <div class="col-xs-12 col-sm-6 col-md-4 normalized-height" ng-repeat="option in searchOptions.results">
-            <a ng-href="recipe/{{option.id}}">
+            <a ng-href="#recipe/{{option.id}}" ng-click="hitserver(option.id)">
                 <div class="panel panel-default" style="top-margin:10px;">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{option.recipeName}}</h3>
