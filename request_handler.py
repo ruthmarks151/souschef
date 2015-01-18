@@ -62,13 +62,27 @@ class request_handler:
         return find_best_ingredient_amount(request)
 
     def send_time(self, request):
-        print "Sending time?"
+        raw_statement = request.args.get('_text')
+        words = raw_statement.split()
+        numbers = []
+        units = []
+        for i in range(len(words)):
+            try:
+                val = eval(words[i])
+                if type(val) == int or type(val) == float:
+                    numbers.append(val)
+                    units.append(words[i + 1])
+            except:
+                if words[i] == 'to' or words[i] == 'in':
+                    units.append(words[i + 1])
+                continue
+
+        milliseconds = Convert.convert_unit(numbers[0], units[0], Convert.ureg.parse_expression("milliseconds")).magnitude
+        return "set a timer for " + str(milliseconds)
 
     def parse_unit_conversion(self, request):
-        print "Parsing unit conversion"
-        print request.args
+
         raw_statement = request.args.get('_text')
-        print raw_statement
         words = raw_statement.split()
         numbers = []
         units = []
