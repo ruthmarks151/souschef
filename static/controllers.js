@@ -12,6 +12,5 @@ App.controller('RecipeController',['$scope', 'speechAPI','Request','$routeParams
         $scope.recipe = Request.pretty(data);
     })
     
-    speechAPI.SpeechSynthesis('Hello There, my name is todd')
     
 }])

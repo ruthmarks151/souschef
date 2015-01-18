@@ -39,6 +39,9 @@ class request_handler:
     def next_step(self,request):
         return self.recipe.next_step().get_step_text()
 
+    def ingredients(self, request):
+        return find_best_ingredient_amount(request.args.get('_text'))
+    
     def find_best_ingredient_amount(phrase):
         words_in_phrase = phrase.split()
         ingredients = recipe.get_ingredients()
@@ -57,9 +60,6 @@ class request_handler:
 
     def previous_step(self,request):
         return self.recipe.previous_step().get_step_text()
-
-    def ingredients(self, request):
-        return find_best_ingredient_amount(request)
 
     def send_time(self, request):
         raw_statement = request.args.get('_text')
