@@ -49,27 +49,48 @@ App.factory('speechAPI', function($http){
                                       "Now that's an interesting question..."]
 
                                       var phrase =  delayPhrases[Math.floor(Math.random() * delayPhrases.length)];
-                                            var xmlHttp = null;
-                                            xmlHttp = new XMLHttpRequest();
-                                            xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent (phrase), false );
-                                            xmlHttp.send( null );
+                                            //#var xmlHttp = null;
+                                            //#xmlHttp = new XMLHttpRequest();
+                                            //#xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent (phrase), false );
+                                            //#xmlHttp.send( null );
+                                             var msg = new SpeechSynthesisUtterance();
+                                      msg.rate = 1; // 0.1 to 10
+                                      msg.pitch = 2; //0 to 2
+                                      msg.text = phrase;
+                                      msg.lang = 'en-US';
+
+                                      speechSynthesis.speak(msg);
 
                                     },
                                     complete: function(response) {
                                         console.log("Sue: ", response.responseText);
-                                        var xmlHttp = null;
-                                            xmlHttp = new XMLHttpRequest();
-                                            xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent(response.responseText.replace("/"," over ")), false );
-                                            xmlHttp.send( null );
+                                        //#var xmlHttp = null;
+                                        //#    xmlHttp = new XMLHttpRequest();
+                                        //#    xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent(response.responseText.replace("/"," over ")), false );
+//#                                            xmlHttp.send( null );
+                                         var msg = new SpeechSynthesisUtterance();
+                                      msg.rate = 1; // 0.1 to 10
+                                      msg.pitch = 2; //0 to 2
+                                      msg.text = response.responseText;
+                                      msg.lang = 'en-US';
+
+                                      speechSynthesis.speak(msg);
 
                                     }
                                 });
                             }else if (response.outcomes[0].confidence > 0.1){
                               console.log("Sue: ", "What was that?");
-                              var xmlHttp = null;
-                            xmlHttp = new XMLHttpRequest();
-                            xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent ("What was that?"), false );
-                            xmlHttp.send( null );
+                           // # var xmlHttp = null;
+                           // #xmlHttp = new XMLHttpRequest();
+                           // #xmlHttp.open( "GET", "http://localhost:5001/say/"+encodeURIComponent ("What was that?"), false );
+                           // #xmlHttp.send( null );
+                             var msg = new SpeechSynthesisUtterance();
+                                      msg.rate = 1; // 0.1 to 10
+                                      msg.pitch = 2; //0 to 2
+                                      msg.text = "What was that?";
+                                      msg.lang = 'en-US';
+
+                                      speechSynthesis.speak(msg);
                             }
                         }
                     });
