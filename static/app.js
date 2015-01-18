@@ -43,7 +43,7 @@ App.controller('RecipeController',['$scope',function($scope){
                       dataType: 'jsonp',
                       method: 'GET',
                       success: function(response) {
-                          console.log("success!", response);
+                          console.log("User: ",response._text);
                           if(response.outcomes[0].confidence>0.3){
                              $.ajax({
                               url: '/functions',
@@ -55,7 +55,7 @@ App.controller('RecipeController',['$scope',function($scope){
                               dataType: 'jsonp',
                               method: 'GET',
                               complete: function(response) {
-                                  console.log(response[results]);
+                                  console.log("Sue: ",response.responseText);
 
                               }
                             });
