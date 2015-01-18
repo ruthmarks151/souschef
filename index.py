@@ -17,9 +17,14 @@ def create_recipe(search):
     return jsonify(results=RecipeGetter.getRecipe(search))
 
 @app.route('/say/<phrase>')
-def create_recipe(phrase):
-    urllib.unquote(phrase)
-    os.system("say "+'"urllib.unquote(phrase)"')
+def say(phrase):
+    phrase = phrase.encode('ascii','ignore')
+    try:
+        os.system('say "'+urllib.unquote(phrase)+'"')
+    except:
+        pass
+    
+    return "200"
 
 @app.route('/recipe/<recipe_id>')
 def choose_recipe(recipe_id):
