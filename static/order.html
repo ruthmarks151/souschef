@@ -51,7 +51,7 @@
     <script>
       function get_quote(){
         var audio = new Audio();
-        audio.src ='http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=you%20are%20a%20bitch.';
+        audio.src ='http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=you%20are%20a%20nice%20person';
         audio.play();
         result = $.get("/postmates/get/quote", { 'pickup_address': document.getElementById('pickup_address').value, 'dropoff_address': document.getElementById('dropoff_address').value });
       }
