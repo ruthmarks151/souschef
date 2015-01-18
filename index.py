@@ -5,6 +5,7 @@ from request_handler import request_handler
 sys.path.insert(0, './recipes/')
 import RecipeGetter
 import json
+import postmates
 
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
@@ -20,7 +21,7 @@ def choose_recipe(recipe_id):
     recipe_id = recipe_id.encode('ascii','ignore')
     r = RecipeGetter.getRecipeClassFromId(recipe_id)
     rh = request_handler(r)
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    return jsonify(results=RecipeGetter.getRecipeFromId(recipe_id))
 
 @app.route('/recipe/get/all/<search>')
 def return_all_recipes(search):
@@ -34,6 +35,15 @@ def return_speech():
     response = rh.handle_request(request)
     print response
     return str(response)
+
+@app.route('/postmates/get/quote/<params>')
+def get_postmates_quote(params):
+    return postmates.post_delivery_quote(params[0], params[1]).json()
+
+@app.route('/postmates/create/delivery/<params>')
+def create_postamtes_order(params):
+    return postmates.post_create_delivery()
+
 
 @app.route('/')
 def root():
