@@ -18,17 +18,17 @@ def post_create_delivery(manifest, pickup_name, pickup_address, pickup_phone_num
                          dropoff_name, dropoff_address, dropoff_phone_number, dropoff_business_name, dropoff_notes, quote_id):
     url = postmates_url + "/v1/customers/" + customer_id + "/deliveries"
     payload = {
-        'manifest': manifest
-        'pickup_name': pickup_name
-        'pickup_address': pickup_address
-        'pickup_phone_number': pickup_phone_number
-        'pickup_business_name': pickup_business_name
-        'pickup_notes': pickup_notes
-        'dropoff_name': dropoff_name
-        'dropoff_address': dropoff_address
-        'dropoff_phone_number': dropoff_phone_number
-        'dropoff_business_name': dropoff_business_name
-        'dropoff_notes': dropoff_notes
+        'manifest': manifest,
+        'pickup_name': pickup_name,
+        'pickup_address': pickup_address,
+        'pickup_phone_number': pickup_phone_number,
+        'pickup_business_name': pickup_business_name,
+        'pickup_notes': pickup_notes,
+        'dropoff_name': dropoff_name,
+        'dropoff_address': dropoff_address,
+        'dropoff_phone_number': dropoff_phone_number,
+        'dropoff_business_name': dropoff_business_name,
+        'dropoff_notes': dropoff_notes,
         'quote_id': quote_id
     }
     result = requests.post(url, data=payload, auth=(api_key,''))
