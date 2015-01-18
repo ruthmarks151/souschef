@@ -26,7 +26,9 @@
       <div style="width: 48%; margin: auto; float:left">
         <script>
           ingreds = $.get("/request/ingredients/");
-          document.write(ingreds);
+          for(i = 0; i < ingreds.lengthl i++){
+            document.write(ingreds[i]);
+          }
         </script>
       </div>
 
