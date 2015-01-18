@@ -61,23 +61,23 @@ def create_postamtes_order():
     for ingred in ingreds:
         order += " " + ingred
 
-    print order
-
     params = {
-        manifest: "",
-        pickup_name: "" + request.args.set("pickup_name"),
-        pickup_address: "" + request.args.set("pickup_address"),
-        pickup_phone_number: "" + request.args.set("pickup_phone_number"),
-        pickup_business_name: "",
-        pickup_notes: "" + request.args.set("pickup_notes"),
-        dropoff_name: "",
-        dropoff_address: "" + request.args.set("dropoff_address"),
-        dropoff_phone_number: "" + request.args.set("dropoff_phone_number"),
-        dropoff_business_name: "" + request.args.set("dropoff_notes"),
-        dropoff_notes: "" + request.args.set("dropoff_notes"),
-        quote_id: request.args.set("quote_id"),
+        'manifest': "" + order,
+        'pickup_name': "" ,
+        'pickup_address': "" + request.args.get("pickup_address"),
+        'pickup_phone_number': "" + request.args.get("pickup_phone_number"),
+        'pickup_business_name': "" + request.args.get("pickup_business_name"),
+        'pickup_notes': "" + request.args.get("pickup_notes"),
+        'dropoff_name': "" + request.args.get("dropoff_name"),
+        'dropoff_address': "" + request.args.get("dropoff_address"),
+        'dropoff_phone_number': "" + request.args.get("dropoff_phone_number"),
+        'dropoff_business_name': "",
+        'dropoff_notes': "" + request.args.get("dropoff_notes"),
+        'quote_id': request.args.get("quote_id"),
     }
-    return postmates.post_create_delivery(params)
+    result = postmates.post_create_delivery(params)
+    j = result.json()
+    return "200"
 
 
 @app.route('/')

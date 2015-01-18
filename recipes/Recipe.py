@@ -6,7 +6,7 @@ class Recipe:
         self.recipe_id = recipe_id
         self.rating = rating
         self.ingredients = []
-        self.ingred_raw = ingredients
+        self.ingreds_raw = ingredients
         self.steps = []
         self.picture_url = picture_url
         self.current_step = 0
