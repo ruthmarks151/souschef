@@ -8,6 +8,16 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
   <body>
+
+    <script>
+      function get_quote(){
+        console.log("gi");
+        console.log(document.pickup_address.value);
+        alert(document.pickup_address.value + "");
+        result = $http.get("/postmates/get/quote/", { pickup_address: document.pickup_address.value, dropoff_address: document.dropoff_address.value });
+      }
+    </script>
+
     <form class="form-inline" role="form" style="width: 50%; margin: auto">
       <div class="form-group">
         <label for="pickup_address">Pickup Address</label>
@@ -15,7 +25,7 @@
           <label for="dropoff_address">Dropoff Address</label>
           <input type="text" class="form-control" id="dropoff_address">
       </div>
-      <button type="submit" class="btn btn-default" onclick="function: get_quote">Submit</button>
+      <button type="submit" class="btn btn-default" onclick="get_quote();">Submit</button>
 
       <br><br>
       <div class="form-group">
@@ -28,6 +38,7 @@
         <label for="pickup_notes">Pickup Notes</label>
         <input type="text" class="form-control" id="pickup_notes">
       </div>
+
       <div class="form-group">
         <label for="dropoff_name">Dropoff Name</label>
         <input type="text" class="form-control" id="dropoff_name">
@@ -38,16 +49,8 @@
         <label for="dropoff_notes">Dropoff Notes</label>
         <input type="text" class="form-control" id="dropoff_notes">
       </div>
-      <button type="submit" class="btn btn-default" onclick="function: get_quote">Submit</button>
+      <button type="submit" class="btn btn-default" onclick="">Submit</button>
 
-      <script>
-        function get_quote(){
-          $.post("",
-          data = {
-            
-          })
-        }
-      </script>
     </form>
   </body>
 </html>
