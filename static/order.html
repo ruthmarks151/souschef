@@ -50,7 +50,7 @@
 
     <script>
       function get_quote(){
-        result = $.get("/postmates/get/quote/", { pickup_address: document.getElementById('pickup_address').value, dropoff_address: document.getElementById('dropoff_address').value });
+        result = $.get("/postmates/get/quote", { pickup_address: document.getElementById('pickup_address').value, dropoff_address: document.getElementById('dropoff_address').value });
       }
     </script>
 
