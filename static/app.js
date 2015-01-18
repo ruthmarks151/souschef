@@ -32,8 +32,8 @@ App.controller('ContentController', ['$scope', '$http', function($scope, $http) 
 }])
 
 App.controller('RecipeController',['$scope', '$routeParams','$http',function($scope, $routeParams, $http){
-    
-    
+
+
           var recognition = new webkitSpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = false;
@@ -93,6 +93,7 @@ App.controller('RecipeController',['$scope', '$routeParams','$http',function($sc
 
                                     },
                                     complete: function(response) {
+                                        if response.responseText[0] != '<'{
                                         console.log("Sue: ", response.responseText);
                                         var msg = new SpeechSynthesisUtterance();
                                         msg.rate = 1; // 0.1 to 10
@@ -101,6 +102,17 @@ App.controller('RecipeController',['$scope', '$routeParams','$http',function($sc
                                         msg.lang = 'en-US';
 
                                         speechSynthesis.speak(msg);
+                                      } else {
+                                        var milliseconds = parseInt(str.slice(1,-1))
+                                        setTimeout(function(){
+                                          console.log("Sue: ", "Your timer is done!");
+                                          var msg = new SpeechSynthesisUtterance();
+                                          msg.rate = 1; // 0.1 to 10
+                                          msg.pitch = 2; //0 to 2
+                                          msg.text = "Your timer is done!"
+                                          msg.lang = 'en-US';
+                                        },milliseconds)
+                                      }
 
 
                                     }
@@ -123,8 +135,8 @@ App.controller('RecipeController',['$scope', '$routeParams','$http',function($sc
           }
             recognition.lang = 'en-US';
             recognition.start();
-    
-   
-  
-   
+
+
+
+
 }])
