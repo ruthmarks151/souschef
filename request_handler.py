@@ -23,7 +23,7 @@ class request_handler:
             'next_step': self.next_step,
             'previous_step': self.previous_step,
             'ingredients': self.ingredients,
-            'send_time': self.send_time
+            'send_timer': self.send_time
         }
 
         return functions[intent](request)
@@ -77,7 +77,7 @@ class request_handler:
                     units.append(words[i + 1])
                 continue
 
-        milliseconds = Convert.convert_unit(numbers[0], units[0], Convert.ureg.parse_expression("milliseconds")).magnitude
+        milliseconds = Convert.convert_unit(numbers[0], units[0], "milliseconds")
         return "set a timer for " + str(milliseconds)
 
     def parse_unit_conversion(self, request):
