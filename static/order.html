@@ -23,13 +23,18 @@
             <button type="submit" class="btn btn-default" onclick="get_quote();">Get Quote</button>
         </div>
       </div>
-      <div style="width: 48%; margin: auto; float:left">
+      <div style="width: 48%; margin: auto auto auto 30px; float:left">
+        <h3>Ingredients</h3>
         <script>
-          var ingreds = $.get("/request/ingredients/");
-          for(i = 0; i < ingreds.lengthl i++){
-            document.write(ingreds[i]);
+          var ingreds = $.get('/request/ingredients/');
+          max = 8;
+          if(ingreds.length > max) max = ingreds.length
+          for(i = 0; i < max; i++){
+            if(i > ingreds.length) document.write("<br>")
+            else document.write('<input type="checkbox" name="' + ingreds['name'] + '">' + ingreds['name'] + '</input><br>');
           }
         </script>
+        <br><br>
       </div>
 
       <div style="width: 48%; margin: auto; float:left">
