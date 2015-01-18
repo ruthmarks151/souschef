@@ -37,7 +37,7 @@ def return_speech():
     return str(response)
 
 @app.route('/postmates/get/quote')
-def get_postmates_quote():
+def get_postmates_quote(request):
     pickup_addr = request.args.get("pickup_address").encode('ascii','ignore')
     dropoff_addr = request.args.get("dropoff_address").encode('ascii','ignore')
     print pickup_addr
