@@ -54,8 +54,8 @@ App.controller('RecipeController',['$scope',function($scope){
                               },
                               dataType: 'jsonp',
                               method: 'GET',
-                              success: function(response) {
-                                  console.log("Sent intent back to server and nothing failed!");
+                              complete: function(response) {
+                                  console.log(response[results]);
 
                               }
                             });
@@ -69,6 +69,3 @@ App.controller('RecipeController',['$scope',function($scope){
             recognition.start();
     }
 }])
-
-
-

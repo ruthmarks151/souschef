@@ -38,7 +38,7 @@ class request_handler:
     def get_current_step(self,request):
         return self.recipe.get_current_step().get_step_text()
     def next_step(self,request):
-        return self.recipe.get_next_step().get_step_text()
+        return self.recipe.next_step().get_step_text()
 
     def find_best_ingredient_amount(phrase):
         words_in_phrase = phrase.split()
@@ -57,7 +57,7 @@ class request_handler:
         return "You need " + ingred.get_amount_string() + " " + ingred.get_unts() + " of " + ingred.getName()
 
     def previous_step(self,request):
-        return self.recipe.get_previous_step().get_step_text()
+        return self.recipe.previous_step().get_step_text()
 
     def ingredients(self, request):
         return find_best_ingredient_amount(request)
