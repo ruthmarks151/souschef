@@ -23,7 +23,7 @@ def say(phrase):
         os.system('say "'+urllib.unquote(phrase)+'"')
     except:
         pass
-    
+
     return "200"
 
 @app.route('/recipe/<recipe_id>')
@@ -49,28 +49,35 @@ def return_speech():
 
 @app.route('/postmates/get/quote')
 def get_postmates_quote():
-    print 1
     pickup_addr = request.args.get("pickup_address")
     dropoff_addr = request.args.get("dropoff_address")
-    return postmates.post_delivery_quote(pickup_addr, dropoff_addr).json()
+    result = postmates.post_delivery_quote(pickup_addr, dropoff_addr)
+    return result.json()['id']
 
-@app.route('/postmates/create/delivery')
+@app.route('/postmates/create/order')
 def create_postamtes_order():
+    ingreds = rh.recipe.get_ingredients_raw();
+    order = ""
+    for ingred in ingreds:
+        order += " " + ingred
+
+    print order
+
     params = {
-        manifest: ""
-        pickup_name: ""
-        pickup_address: ""
-        pickup_phone_number: ""
-        pickup_business_name: ""
-        pickup_notes: ""
-        dropoff_name: ""
-        dropoff_address: ""
-        dropoff_phone_number: ""
-        dropoff_business_name: ""
-        dropoff_notes: ""
-        quote_id: ""
+        manifest: "",
+        pickup_name: "" + request.args.set("pickup_name"),
+        pickup_address: "" + request.args.set("pickup_address"),
+        pickup_phone_number: "" + request.args.set("pickup_phone_number"),
+        pickup_business_name: "",
+        pickup_notes: "" + request.args.set("pickup_notes"),
+        dropoff_name: "",
+        dropoff_address: "" + request.args.set("dropoff_address"),
+        dropoff_phone_number: "" + request.args.set("dropoff_phone_number"),
+        dropoff_business_name: "" + request.args.set("dropoff_notes"),
+        dropoff_notes: "" + request.args.set("dropoff_notes"),
+        quote_id: request.args.set("quote_id"),
     }
-    return postmates.post_create_delivery()
+    return postmates.post_create_delivery(params)
 
 
 @app.route('/')

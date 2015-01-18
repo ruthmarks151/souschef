@@ -44,17 +44,25 @@
           <label for="dropoff_notes">Notes</label>
           <input type="text" class="form-control" id="dropoff_notes">
           <br>
-          <button type="submit" class="btn btn-default pull-right" onclick="">Submit</button>
+          <button type="submit" class="btn btn-default pull-right" onclick="create_order()">Submit</button>
         </div>
       </div>
 
       <script>
+        quote_id = "";
         function get_quote(){
-          result = $.get("/postmates/get/quote", { 'pickup_address': document.getElementById('pickup_address').value, 'dropoff_address': document.getElementById('dropoff_address').value });
+          $.get("/postmates/get/quote", {
+            'pickup_address': document.getElementById('pickup_address').value,
+            'dropoff_address': document.getElementById('dropoff_address').value
+          }).done(function(data) {
+            quote_id = data;
+            console.log(data);
+          });
         }
 
         function create_order(){
-          result = $.get("/postmates/create/order", {
+          console.log("called");
+          $.get("/postmates/create/order", {
             'pickup_address': document.getElementById('pickup_address').value,
             'pickup_business_name': document.getElementById('pickup_business_name').value,
             'pickup_phone_number': document.getElementById('pickup_phone_number').value,
@@ -62,7 +70,10 @@
             'dropoff_name': document.getElementById('dropoff_name').value,
             'dropoff_phone_number': document.getElementById('dropoff_phone_number').value,
             'dropoff_notes': document.getElementById('dropoff_notes').value,
-            'dropoff_address': document.getElementById('dropoff_address').value
+            'dropoff_address': document.getElementById('dropoff_address').value,
+            'quote_id': quote_id
+          }).done(function(data) {
+            console.log(data);
           });
         }
 
