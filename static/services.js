@@ -35,6 +35,18 @@ App.factory('Request',function($http){
         },
         recipeByID: function(id){
             return $http.get("recipe/"+id)
+        },
+        pretty:function(data){
+            data = data.results;
+            return{
+                time:data.totalTimeInSeconds,
+                rating:data.rating,
+                servings:data.numberOfServings,
+                ingredients:data.ingredientLines,
+                picture:data.images[0].hostedLargeUrl,
+                name:data.name,
+                flavors:data.flavors,
+            }
         }
     }
 });

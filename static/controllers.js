@@ -9,6 +9,9 @@ App.controller('SearchController', ['$scope', '$http','Request', function($scope
 App.controller('RecipeController',['$scope', 'speechAPI','Request','$routeParams', function($scope, speechAPI, Request, $routeParams){
     speechAPI.SpeechRecognition();
     Request.recipeByID($routeParams.recipeid).success(function(data){
-        $scope.recipe = data;
+        $scope.recipe = Request.pretty(data);
     })
+    
+    speechAPI.SpeechSynthesis('Hello There, my name is todd')
+    
 }])
